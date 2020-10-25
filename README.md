@@ -24,7 +24,7 @@ type SemVer struct {
 
 func main() {
 	var myFileVersion SemVer
-	registry := parse_register.RegisterGoPrimitives(&parse_register.Registry{})
+	registry := parse_register.GoPrimitives()
 	registry.Register(reflect.TypeOf((*SemVer)(nil)).Elem(), func(settableDst interface{}, value string) (err error){
 		version := settableDst.(*SemVer)
 		parts := strings.Split(value,".")

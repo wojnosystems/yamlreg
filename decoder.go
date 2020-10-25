@@ -28,16 +28,16 @@ func (t ErrUnsupportedType) Error() string {
 
 type decoder struct {
 	reader   io.Reader
-	registry *parse_register.Registry
+	registry parse_register.ValueSetter
 }
 
 type Decoder interface {
 	Decode(out interface{}) (err error)
 }
 
-func NewDecoder(r io.Reader, registry *parse_register.Registry) Decoder {
+func NewDecoder(r io.Reader, registry parse_register.ValueSetter) Decoder {
 	if registry == nil {
-		registry = &parse_register.Registry{}
+		registry = parse_register.GoPrimitives()
 	}
 	return &decoder{
 		reader:   r,

@@ -35,8 +35,15 @@ github.com/wojnosystems/go-optional v1.4.0 h1:puewD7vpP0KZWtXklm/3I8o8oU3p4jLxFB
 github.com/wojnosystems/go-optional v1.4.0/go.mod h1:Ryu1VdhTzgkURi1WATQ28FcYVLVAnVtIZKo124B0yAE=
 github.com/wojnosystems/go-optional-parse-registry v1.0.1 h1:dQfR/nwDf/mOpAB88gGeO4hVP1qF4MdKdXbwX6BO2ys=
 github.com/wojnosystems/go-optional-parse-registry v1.0.1/go.mod h1:Ew7ce/hUYyc+cEjv6kDGLno0tQXCclPgEkwPfKzYrhA=
+github.com/wojnosystems/go-optional-parse-registry v1.1.0/go.mod h1:+WJSm9wIELvJAzVu00fz17lhSNueL6bMKy3fefQ0hmI=
+github.com/wojnosystems/go-optional-parse-registry v1.1.2 h1:riN+3k2ewRvGUtgclCQK0BBx69a1AVcxOOBlaA7FGHw=
+github.com/wojnosystems/go-optional-parse-registry v1.1.2/go.mod h1:Ji8t4plQxXIOKP5cUP1HHMJ0DIfNYPz0wfBKULzd/qg=
 github.com/wojnosystems/go-parse-register v1.0.0 h1:oYGrMY/POYdWENIt3OYR7uthzJ/Es82kr5ctMYWOUCI=
 github.com/wojnosystems/go-parse-register v1.0.0/go.mod h1:Zo4KDblfQiPjM9uWR0YyNLEx22gnpSyBwkAtHzx56E0=
+github.com/wojnosystems/go-parse-register v1.1.0 h1:lxlOtpZG2g3LnUaYYwCMiGZ3wcy5gKUj3XiL42MOF6Q=
+github.com/wojnosystems/go-parse-register v1.1.0/go.mod h1:Zo4KDblfQiPjM9uWR0YyNLEx22gnpSyBwkAtHzx56E0=
+github.com/wojnosystems/go-parse-register v1.1.1 h1:uiY/PqFh9Xdz2gijLCINrOqb9kIvWZnUa0Q8nrBarcE=
+github.com/wojnosystems/go-parse-register v1.1.1/go.mod h1:Zo4KDblfQiPjM9uWR0YyNLEx22gnpSyBwkAtHzx56E0=
 golang.org/x/sys v0.0.0-20190222072716-a9d3bda3a223/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20191008105621-543471e840be/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20191010194322-b09406accb47 h1:/XfQ9z7ib8eEJX2hdgFTZJ/ntt0swNk5oYBziWeTCvY=
@@ -46,6 +53,8 @@ golang.org/x/sys v0.0.0-20200116001909-b77594299b42/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20201022201747-fb209a7c41cd h1:WgqgiQvkiZWz7XLhphjt2GI2GcGCTIZs9jqXMWmH+oc=
 golang.org/x/sys v0.0.0-20201022201747-fb209a7c41cd/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20201024232916-9f70ab9862d5 h1:iCaAy5bMeEvwANu3YnJfWwI0kWAGkEa2RXPdweI/ysk=
+golang.org/x/sys v0.0.0-20201024232916-9f70ab9862d5/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=
 golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
 golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898 h1:/atklqdjdhuosWIl6AIbOeHJjicWYPqR9bpxqxYG2pA=

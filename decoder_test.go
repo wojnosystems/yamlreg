@@ -34,10 +34,10 @@ type decoderTestOpt struct {
 }
 
 func TestDecoder_Decode(t *testing.T) {
-	goRegistry := parse_register.RegisterGoPrimitives(&parse_register.Registry{})
+	goRegistry := parse_register.GoPrimitives()
 	t.Run("go primitives", func(t *testing.T) {
 		cases := map[string]struct {
-			reg         *parse_register.Registry
+			reg         parse_register.ValueSetter
 			input       string
 			expected    decoderTestStruct
 			expectedErr string
@@ -73,7 +73,7 @@ Nullable: null
 missing: "puppy"
 `,
 				expected:    decoderTestStruct{},
-				expectedErr: "unsupported type at 2:8: for yaml field named \"missing\" into golang type \"yamlreg.decoderTestStruct\"",
+				expectedErr: "unsupported type at 2:8: for yaml field named \"missing\" into golang type \"github.com/wojnosystems/yamlreg.decoderTestStruct\"",
 			},
 			"literal": {
 				reg: goRegistry,
@@ -95,6 +95,7 @@ Name: a name # comment
 				},
 			},
 			"unsupported types": {
+				reg: parse_register.New(),
 				input: `---
 Name: name
 `,
@@ -133,9 +134,9 @@ Inf: .inf
 
 	t.Run("optional", func(t *testing.T) {
 
-		optReg := optional_parse_registry.Register(goRegistry)
+		optReg := optional_parse_registry.RegisterFluent(goRegistry)
 		cases := map[string]struct {
-			reg         *parse_register.Registry
+			reg         parse_register.ValueSetter
 			input       string
 			expected    decoderTestOpt
 			expectedErr string
