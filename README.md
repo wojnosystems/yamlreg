@@ -51,6 +51,11 @@ The Major, Minor, and Patch fields of myFileVersion struct are set to 1, 2, and 
 
 Honestly, I think the way the current YAML and even the JSON libraries handle custom struct deserialization is broken. Say you want to support a custom deserialization, as exemplified above for SemVer, with the current yaml.v2 or yaml.v3, how do you do that?
 
-According to the documentation, you need to add a method called UnmarshalYAML for your custom structure. However, what if you don't control the code for the object you're deserializing? You cannot add a method to an object in a different package. This leads to solutions like wrapping objects in custom compositions to implement the new methods, but then you need to unwrap the outer class to use the actual value.
+According to the documentation, you need to add a method called UnmarshalYAML for your custom structure. However, what if you don't control the code for the object you're deserializing? You cannot add a method to an object in a different package. This leads to solutions like wrapping objects in custom compositions to implement the new methods, but then you need to unwrap the outer class to use the actual value. And, this also means that your code is tightly coupled to the deserialization strategy. Your code now depends on and must import the yaml library. Maybe somebody wants to use your code but with JSON? Now they depend on YAML and will never use it.
 
 This method allows you to register any custom deserialization logic to convert a parsed string key into a value in any type of your choice. The parse registry comes with default go handlers if you want, but you can add any handlers for any reflect types you desire, including overwriting the Go primitives for custom handling.
+
+# Future work
+
+* I didn't have time to support all of the YAML features. I did not do any work with aliases, tags, isolated literals, or mergekeys. I only did enough to support the major literals, mapping, and sequences.
+* More tests with more coverage
