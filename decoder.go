@@ -176,6 +176,25 @@ func (d *decoder) walkNode(node ast.Node, out reflect.Value) (err error) {
 					ok = true
 				}
 			}
+		case reflect.Map:
+			ok = true
+
+			if out.IsNil() {
+				newMap := reflect.MakeMap(outType)
+				out.Set(newMap)
+			}
+
+			keyOut := reflect.New(outType.Key())
+			err = d.walkNode(n.Key, keyOut.Elem())
+			if err != nil {
+				return
+			}
+			valueOut := reflect.New(outType.Elem())
+			err = d.walkNode(n.Value, valueOut.Elem())
+			if err != nil {
+				return
+			}
+			out.SetMapIndex(keyOut.Elem(), valueOut.Elem())
 		}
 	case *ast.SequenceNode:
 		if out.Kind() == reflect.Slice {

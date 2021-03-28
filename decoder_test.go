@@ -188,10 +188,34 @@ custom:
 		assert.Equal(t, 1, actual.Custom["key1"])
 		assert.Equal(t, 2, actual.Custom["key2"])
 	})
+
+	t.Run("custom map type nested custom", func(t *testing.T) {
+		buffer := bytes.NewReader([]byte(`---
+custom:
+  key1:
+    sub1: 1
+  key2:
+    sub2: 2
+    sub23: 23
+`))
+		dec := NewDecoder(buffer, goRegistry)
+		var actual customMapTypeNestedWrapper
+		err := dec.Decode(&actual)
+		require.NoError(t, err)
+		assert.Equal(t, 1, actual.Custom["key1"]["sub1"])
+		assert.Equal(t, 2, actual.Custom["key2"]["sub2"])
+		assert.Equal(t, 23, actual.Custom["key2"]["sub23"])
+	})
 }
 
 type customMapType map[string]int
 
 type customMapTypeWrapper struct {
 	Custom customMapType `yaml:"custom"`
+}
+
+type customMapNestedType map[string]customMapType
+
+type customMapTypeNestedWrapper struct {
+	Custom customMapNestedType `yaml:"custom"`
 }
