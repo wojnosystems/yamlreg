@@ -134,18 +134,40 @@ func (d *decoder) walkNode(node ast.Node, out reflect.Value) (err error) {
 		err = d.walkNode(n.Body, out)
 		ok = true
 	case *ast.MappingNode:
-		ok = true
-		for _, value := range n.Values {
-			err = d.walkNode(value, out)
-			if err != nil {
-				return
+		outType := out.Type()
+		switch outType.Kind() {
+		case reflect.Struct:
+			ok = true
+			for _, value := range n.Values {
+				err = d.walkNode(value, out)
+				if err != nil {
+					return
+				}
+			}
+		case reflect.Map:
+			ok = true
+			newMap := reflect.MakeMap(outType)
+			out.Set(newMap)
+			for _, value := range n.Values {
+				keyOut := reflect.New(outType.Key())
+				err = d.walkNode(value.Key, keyOut.Elem())
+				if err != nil {
+					return
+				}
+				valueOut := reflect.New(outType.Elem())
+				err = d.walkNode(value.Value, valueOut.Elem())
+				if err != nil {
+					return
+				}
+				newMap.SetMapIndex(keyOut.Elem(), valueOut.Elem())
 			}
 		}
 	case *ast.MappingKeyNode:
 		err = &ErrUnsupportedYAMLFeature{Feature: "MappingKeyNode"}
 	case *ast.MappingValueNode:
 		outType := out.Type()
-		if outType.Kind() == reflect.Struct {
+		switch outType.Kind() {
+		case reflect.Struct:
 			if keyNode, keyOk := n.Key.(*ast.StringNode); keyOk {
 				_, fieldIndex, fieldFound := getFieldWithName(keyNode.Value, outType)
 				if fieldFound {

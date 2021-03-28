@@ -3,6 +3,7 @@ package yamlreg
 import (
 	"bytes"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"github.com/wojnosystems/go-optional"
 	"github.com/wojnosystems/go-optional-parse-registry"
 	"github.com/wojnosystems/go-parse-register"
@@ -172,4 +173,25 @@ Name: "puppy"
 			})
 		}
 	})
+
+	t.Run("custom map type", func(t *testing.T) {
+		buffer := bytes.NewReader([]byte(`---
+custom:
+  key1: 1
+  key2: 2
+`))
+		dec := NewDecoder(buffer, goRegistry)
+		var actual customMapTypeWrapper
+		err := dec.Decode(&actual)
+		require.NoError(t, err)
+		assert.Equal(t, len(actual.Custom), 2)
+		assert.Equal(t, 1, actual.Custom["key1"])
+		assert.Equal(t, 2, actual.Custom["key2"])
+	})
+}
+
+type customMapType map[string]int
+
+type customMapTypeWrapper struct {
+	Custom customMapType `yaml:"custom"`
 }
